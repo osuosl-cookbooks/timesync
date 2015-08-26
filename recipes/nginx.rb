@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: timesync
-# Recipe:: default
+# Recipe:: nginx
 #
-# Copyright 2015 Oregon State University
+# Copyright 2015, Oregon State University
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,18 +15,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-node.override['nodejs']['install_method'] = 'binary'
-node.override['nodejs']['version'] = '0.12.7'
-node.override['nodejs']['binary']['checksum']['linux_x64'] = '6a2b3077f293d17e2a1e6dba0297f761c9e981c255a2c82f329d4173acf9b9d5'
+include_recipe 'osl-nginx'
 
-nodejs_webapp 'timesync' do
-  create_user true
-  user 'timesync'
-  group 'timesync'
+nginx_app 'timesync' do
+  template 'timesync.conf.erb'
+  cookbook 'timesync'
+end
 
-  script 'src/app.js'
-  repository 'https://github.com/osuosl/timesync-node.git'
-  branch 'develop'
-  node_args ['--harmony']
+selinux_policy_boolean 'httpd_can_network_connect' do
+  value true
+  notifies :start, 'service[nginx]', :immediate
 end

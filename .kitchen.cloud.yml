@@ -24,3 +24,5 @@ suites:
   - name: default
     run_list:
       - recipe[timesync::default]
+      - recipe[timesync::database]
+      - recipe[timesync::nginx]
