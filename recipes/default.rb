@@ -20,12 +20,13 @@ node.override['nodejs']['install_method'] = 'binary'
 node.override['nodejs']['version'] = '0.12.7'
 node.override['nodejs']['binary']['checksum']['linux_x64'] = '6a2b3077f293d17e2a1e6dba0297f761c9e981c255a2c82f329d4173acf9b9d5'
 
+
 nodejs_webapp 'timesync' do
   create_user true
   user 'timesync'
   group 'timesync'
 
-  script 'app/src.js'
+  script 'src/app.js'
   repository 'https://github.com/osuosl/timesync-node.git'
   branch 'develop'
   node_args ['--harmony']
