@@ -25,4 +25,4 @@ suites:
     run_list:
       - recipe[timesync::default]
       - recipe[timesync::database]
-      - recipe[timesync::nginx]
+      - recipe[haproxy::default]
