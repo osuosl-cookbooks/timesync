@@ -16,17 +16,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 bash 'database' do
   user 'root'
-  cwd '/opt/timesync/source'
+  cwd "#{node['timesync']['application_path']}/source"
   code <<-EOH
     npm run migrations
-    chown timesync:timesync dev.sqlite3
+    chown #{node['timesync']['user']}:#{node['timesync']['group']} dev.sqlite3
   EOH
 end
 
 pm2_application 'timesync' do
-  user 'timesync'
+  user node['timesync']['user']
   action :reload
 end
