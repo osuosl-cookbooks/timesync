@@ -11,9 +11,12 @@ describe port(80) do
   it { should be_listening }
 end
 
-# database exists
-describe file('/opt/timesync/source/dev.sqlite3') do
-  it { should exist }
-  it { should be_grouped_into 'timesync' }
-  it { should be_owned_by 'timesync' }
+# database test
+describe 'install and start the Postgres database' do
+  describe service('postgresql') do
+    it { should be_running }
+  end
+  describe port(5432) do
+    it { should be_listening }
+  end
 end

@@ -27,3 +27,8 @@ nodejs_webapp 'timesync' do
   branch node['timesync']['branch']
   node_args node['timesync']['node_args']
 end
+
+bash 'run timesync migrations' do
+  code 'npm run migrations'
+  cwd "#{node['timesync']['application_path']}/source"
+end

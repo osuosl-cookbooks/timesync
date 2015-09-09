@@ -4,6 +4,12 @@ driver:
 
 provisioner:
   name: chef_solo
+  encrypted_data_bag_secret_key_path: test/integration/encrypted_data_bag_secret
+  data_bags_path: test/integration/data_bags
+  attributes:
+    postgresql:
+      password:
+        postgres: postgres
 
 platforms:
   - name: centos-7.1
@@ -11,4 +17,8 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[postgresql::server]
+      - recipe[timesync::create_database]
       - recipe[timesync::default]
+      - recipe[timesync::database]
+      - recipe[haproxy::default]
