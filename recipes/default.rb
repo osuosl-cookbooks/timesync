@@ -32,3 +32,8 @@ bash 'run timesync migrations' do
   code 'npm run migrations'
   cwd "#{node['timesync']['application_path']}/source"
 end
+
+pm2_application 'timesync' do
+  user node['timesync']['user']
+  action :reload
+end

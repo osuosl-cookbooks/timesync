@@ -31,6 +31,7 @@ suites:
     run_list:
       - recipe[postgresql::server]
       - recipe[timesync::create_database]
-      - recipe[timesync::default]
+      - recipe[timesync::user]
       - recipe[timesync::database]
+      - recipe[timesync::default]
       - recipe[haproxy::default]

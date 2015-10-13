@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: timesync
+# Cookbook Name:: user
 # Recipe:: database
 #
 # Copyright 2015 Oregon State University
@@ -16,16 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'postgresql::client'
-
-pg = Chef::EncryptedDataBagItem.load(node['timesync']['databag'],
-                                     'pg')
-
-magic_shell_environment 'PG_CONNECTION_STRING' do
-  value "postgres://#{pg['user']}:#{pg['pass']}@#{pg['host']}:#{pg['port']}/" \
-    "#{pg['database_name']}"
+group node['timesync']['group'] do
+  action :create
 end
 
-magic_shell_environment 'NODE_ENV' do
-  value 'production'
+user node['timesync']['user'] do
+  shell '/bin/bash'
+  gid node['timesync']['group']
 end
