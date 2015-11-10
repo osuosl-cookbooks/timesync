@@ -34,6 +34,6 @@ suites:
       - recipe[postgresql::server]
       - recipe[timesync::create_database]
       - recipe[timesync::user]
-      - recipe[timesync::database]
+      - recipe[postgresql::client]
       - recipe[timesync::default]
       - recipe[haproxy::default]

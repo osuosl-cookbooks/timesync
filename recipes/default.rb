@@ -16,11 +16,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+pg = Chef::EncryptedDataBagItem.load(node['timesync']['databag'],
+                                     'pg')
+
+environment = {
+  PG_CONNECTION_STRING: "postgres://#{pg['user']}:#{pg['pass']}@#{pg['host']}" \
+    ":#{pg['port']}/#{pg['database_name']}",
+  NODE_ENV: 'production'
+}
+
 nodejs_webapp 'timesync' do
   path node['timesync']['application_path']
-  create_user true
   user node['timesync']['user']
   group node['timesync']['group']
+  env environment
 
   script 'src/app.js'
   repository node['timesync']['repo']
@@ -29,7 +38,13 @@ nodejs_webapp 'timesync' do
 end
 
 bash 'run timesync migrations' do
-  code 'npm run migrations'
+  code 'echo hi' # npm run migrations
+  # environment(
+  #   PG_CONNECTION_STRING: "postgres://#{pg['user']}:#{pg['pass']}@#{pg['host']}" \
+  #     ":#{pg['port']}/#{pg['database_name']}",
+  #   NODE_ENV: 'production'
+  # )
+  env(foo: "bar")
   cwd "#{node['timesync']['application_path']}/source"
 end
 

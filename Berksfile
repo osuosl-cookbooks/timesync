@@ -2,6 +2,5 @@ source 'https://supermarket.chef.io'
 
 cookbook 'haproxy'
 cookbook 'nodejs-webapp',
-         git: 'git@github.com:osuosl-cookbooks/nodejs-webapp',
-         branch: 'tschuy/lwrp'
+         path: '/home/tschuy/git/chef-repo/osuosl-cookbooks/nodejs-webapp'
 metadata
