@@ -21,6 +21,9 @@ provisioner:
       password:
         postgres: postgres
 
+transport:
+  ssh_key: <%= ENV['OS_PRIVATE_SSH_KEY'] %>
+
 platforms:
 - name: centos-7.1
   driver_plugin: openstack
