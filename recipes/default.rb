@@ -20,9 +20,9 @@ pg = Chef::EncryptedDataBagItem.load(node['timesync']['databag'],
                                      'pg')
 
 environment = {
-  PG_CONNECTION_STRING: "postgres://#{pg['user']}:#{pg['pass']}@#{pg['host']}" \
-    ":#{pg['port']}/#{pg['database_name']}",
-  NODE_ENV: 'production'
+  'PG_CONNECTION_STRING' => "postgres://#{pg['user']}:#{pg['pass']}@" \
+    "#{pg['host']}:#{pg['port']}/#{pg['database_name']}",
+  'NODE_ENV' => 'production'
 }
 
 nodejs_webapp 'timesync' do
@@ -38,17 +38,12 @@ nodejs_webapp 'timesync' do
 end
 
 bash 'run timesync migrations' do
-  code 'echo hi' # npm run migrations
-  # environment(
-  #   PG_CONNECTION_STRING: "postgres://#{pg['user']}:#{pg['pass']}@#{pg['host']}" \
-  #     ":#{pg['port']}/#{pg['database_name']}",
-  #   NODE_ENV: 'production'
-  # )
-  env(foo: "bar")
+  code 'npm run migrations'
+  env environment
   cwd "#{node['timesync']['application_path']}/source"
 end
 
 pm2_application 'timesync' do
   user node['timesync']['user']
-  action :restart
+  action :start_or_graceful_reload
 end
