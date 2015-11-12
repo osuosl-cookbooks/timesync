@@ -6,6 +6,10 @@ describe port(8000) do
   it { should be_listening }
 end
 
+describe command('curl http://localhost/v1/times') do
+  its(:stdout) { should match(/\[\]/) }
+end
+
 # haproxy
 describe port(80) do
   it { should be_listening }
