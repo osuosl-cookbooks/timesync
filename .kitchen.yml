@@ -20,5 +20,4 @@ suites:
       - recipe[postgresql::server]
       - recipe[timesync::create_database]
       - recipe[timesync::default]
-      - recipe[timesync::database]
       - recipe[haproxy::default]
