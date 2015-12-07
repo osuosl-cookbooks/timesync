@@ -7,6 +7,7 @@ default['timesync']['branch'] = 'develop'
 default['timesync']['node_args'] = ['--harmony']
 default['timesync']['user'] = 'timesync'
 default['timesync']['group'] = 'timesync'
+default['timesync']['databag'] = 'timesync'
 
 default['haproxy']['members'] = [
   {

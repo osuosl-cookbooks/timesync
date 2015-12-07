@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: timesync
-# Recipe:: default
+# Recipe:: create_database
 #
 # Copyright 2015 Oregon State University
 #
@@ -19,31 +19,25 @@
 pg = Chef::EncryptedDataBagItem.load(node['timesync']['databag'],
                                      'pg')
 
-environment = {
-  'PG_CONNECTION_STRING' => "postgres://#{pg['user']}:#{pg['pass']}@" \
-    "#{pg['host']}:#{pg['port']}/#{pg['database_name']}",
-  'NODE_ENV' => 'production'
+postgresql_connection_info = {
+  host: pg['host'],
+  port: pg['port'],
+  username: pg['root_user'],
+  password: pg['root_pass']
 }
 
-nodejs_webapp 'timesync' do
-  path node['timesync']['application_path']
-  user node['timesync']['user']
-  group node['timesync']['group']
-  env environment
+include_recipe 'database::postgresql'
 
-  script 'src/app.js'
-  repository node['timesync']['repo']
-  branch node['timesync']['branch']
-  node_args node['timesync']['node_args']
+database pg['database_name'] do
+  connection postgresql_connection_info
+  provider Chef::Provider::Database::Postgresql
+  action :create
 end
 
-bash 'run timesync migrations' do
-  code 'npm run migrations'
-  env environment
-  cwd "#{node['timesync']['application_path']}/source"
-end
-
-pm2_application 'timesync' do
-  user node['timesync']['user']
-  action :start_or_graceful_reload
+postgresql_database_user pg['user'] do
+  connection postgresql_connection_info
+  database_name pg['database_name']
+  password pg['pass']
+  privileges [:all]
+  action :create
 end

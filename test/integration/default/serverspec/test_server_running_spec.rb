@@ -6,14 +6,30 @@ describe port(8000) do
   it { should be_listening }
 end
 
+describe command('curl http://localhost/v1/times') do
+  its(:stdout) { should match(/\[\]/) }
+end
+
 # haproxy
 describe port(80) do
   it { should be_listening }
 end
 
-# database exists
-describe file('/opt/timesync/source/dev.sqlite3') do
-  it { should exist }
-  it { should be_grouped_into 'timesync' }
-  it { should be_owned_by 'timesync' }
+# database
+describe 'install and start the Postgres database' do
+  describe service('postgresql') do
+    it { should be_running }
+  end
+  describe port(5432) do
+    it { should be_listening }
+  end
+end
+
+describe 'create user and group' do
+  describe user('timesync') do
+    it { should exist }
+  end
+  describe group('timesync') do
+    it { should exist }
+  end
 end

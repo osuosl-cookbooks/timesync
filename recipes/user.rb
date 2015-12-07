@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: timesync
+# Cookbook Name:: user
 # Recipe:: database
 #
 # Copyright 2015 Oregon State University
@@ -16,16 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-bash 'database' do
-  user 'root'
-  cwd "#{node['timesync']['application_path']}/source"
-  code <<-EOH
-    npm run migrations
-    chown #{node['timesync']['user']}:#{node['timesync']['group']} dev.sqlite3
-  EOH
+group node['timesync']['group'] do
+  action :create
 end
 
-pm2_application 'timesync' do
-  user node['timesync']['user']
-  action :reload
+user node['timesync']['user'] do
+  shell '/bin/bash'
+  gid node['timesync']['group']
 end

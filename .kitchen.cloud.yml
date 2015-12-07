@@ -9,9 +9,20 @@ driver_config:
   openstack_tenant: <%= ENV['OS_TENANT_NAME'] %>
   floating_ip_pool: <%= ENV['OS_FLOATING_IP_POOL'] %>
   flavor_ref: <%= ENV['OS_FLAVOR_REF'] %>
+  security_groups:
+    - "web"
 
 provisioner:
   name: chef_solo
+  encrypted_data_bag_secret_key_path: test/integration/encrypted_data_bag_secret
+  data_bags_path: test/integration/data_bags
+  attributes:
+    postgresql:
+      password:
+        postgres: postgres
+
+transport:
+  ssh_key: <%= ENV['OS_PRIVATE_SSH_KEY'] %>
 
 platforms:
 - name: centos-7.1
@@ -23,6 +34,9 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[postgresql::server]
+      - recipe[timesync::create_database]
+      - recipe[timesync::user]
+      - recipe[postgresql::client]
       - recipe[timesync::default]
-      - recipe[timesync::database]
       - recipe[haproxy::default]
