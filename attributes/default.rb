@@ -9,7 +9,7 @@ default['timesync']['user'] = 'timesync'
 default['timesync']['group'] = 'timesync'
 default['timesync']['databag'] = 'timesync'
 
-default['haproxy']['members'] = [
+override['haproxy']['members'] = [
   {
     'hostname' => 'localhost',
     'ipaddress' => '127.0.0.1',
