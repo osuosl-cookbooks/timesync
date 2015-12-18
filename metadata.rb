@@ -15,3 +15,5 @@ depends 'nodejs'
 depends 'nodejs-webapp'
 depends 'pm2'
 depends 'postgresql'
+
+supports 'centos', '~> 7'
