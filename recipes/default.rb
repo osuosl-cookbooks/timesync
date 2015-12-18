@@ -26,7 +26,7 @@ environment = {
     "#{pg['host']}:#{pg['port']}/#{pg['database_name']}",
   'NODE_ENV' => 'production',
   'SECRET_KEY' => secret_key['key'],
-  'INSTANCE_NAME' => 'osuosl-timesync-staging'
+  'INSTANCE_NAME' => node['timesync']['instance_name']
 }
 
 nodejs_webapp 'timesync' do
