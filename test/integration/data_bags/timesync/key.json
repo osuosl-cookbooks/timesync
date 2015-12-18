@@ -1,0 +1,10 @@
+{
+  "id": "key",
+  "key": {
+    "encrypted_data": "LVd/qOEKsnBvY/fsSQLWem69/XF8Y2rSkUWCM/AAqhE+FLb1OCmLC0CueAMq\ngPQtJOMqGAWzVs1MYS6rYTsySiOn5y+aqlVc4OernvnIUN9P1YbZp/9Nh2qp\n5SSNcflNUMPFi50j6cf007SY71nalQ==\n",
+    "hmac": "jRovQnokONhW4rRqBtrQiI3Ik8XTX+vy7vP+lW345Yk=\n",
+    "iv": "nhq8hpmNU5zLABvjp17nxA==\n",
+    "version": 2,
+    "cipher": "aes-256-cbc"
+  }
+}
