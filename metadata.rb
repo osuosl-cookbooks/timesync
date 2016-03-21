@@ -4,7 +4,7 @@ maintainer_email 'chef@osuosl.org'
 license          'apache2'
 description      'Installs/Configures timesync'
 long_description 'Installs/Configures timesync'
-version          '0.1.2'
+version          '0.1.3'
 
 depends 'build-essential'
 depends 'database'
