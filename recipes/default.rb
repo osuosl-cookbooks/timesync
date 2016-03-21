@@ -24,7 +24,7 @@ secret_key = Chef::EncryptedDataBagItem.load(node['timesync']['databag'],
 environment = {
   'PG_CONNECTION_STRING' => "postgres://#{pg['user']}:#{pg['pass']}@" \
     "#{pg['host']}:#{pg['port']}/#{pg['database_name']}",
-  'NODE_ENV' => 'production',
+  'NODE_ENV' => 'production_pg',
   'SECRET_KEY' => secret_key['key'],
   'INSTANCE_NAME' => node['timesync']['instance_name']
 }
