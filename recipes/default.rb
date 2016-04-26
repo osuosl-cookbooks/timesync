@@ -48,7 +48,7 @@ bash 'run timesync migrations' do
 end
 
 bash 'create root user' do
-  code 'npm run create-user -u root -p #{secret_key['root_pass']}'
+  code 'npm run create-user -- -u root -p #{secret_key['root_pass']}'
   env environment
   cwd "#{node['timesync']['application_path']}/source"
 end
