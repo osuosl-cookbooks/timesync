@@ -42,7 +42,13 @@ nodejs_webapp 'timesync' do
 end
 
 bash 'run timesync migrations' do
-  code 'npm run migrations'
+  code 'npm run migrations root #{secret_key['root_pass']}'
+  env environment
+  cwd "#{node['timesync']['application_path']}/source"
+end
+
+bash 'create root user' do
+  code 'npm run create-user'
   env environment
   cwd "#{node['timesync']['application_path']}/source"
 end
