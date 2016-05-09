@@ -48,7 +48,7 @@ bash 'run timesync migrations' do
 end
 
 execute 'create root user' do
-  command "npm run create-user -- -u root -p #{secret_key['root_pass']}"
+  command "npm run create-account -- -u root -p #{secret_key['root_pass']}"
   environment environment
   sensitive true
   cwd "#{node['timesync']['application_path']}/source"
@@ -57,4 +57,11 @@ end
 pm2_application 'timesync' do
   user node['timesync']['user']
   action :start_or_graceful_reload
+end
+
+directory '/opt/timesync/source' do
+  owner 'timesync'
+  group 'timesync'
+  mode '0755'
+  recursive true
 end
