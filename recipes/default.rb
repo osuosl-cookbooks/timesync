@@ -16,10 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-pg = Chef::EncryptedDataBagItem.load(node['timesync']['databag'],
-                                     'pg')
-secret_key = Chef::EncryptedDataBagItem.load(node['timesync']['databag'],
-				     'key')
+pg = Chef::EncryptedDataBagItem.load(node['timesync']['databag'], 'pg')
+secret_key = Chef::EncryptedDataBagItem.load(node['timesync']['databag'], 'key')
 
 environment = {
   'PG_CONNECTION_STRING' => "postgres://#{pg['user']}:#{pg['pass']}@" \
