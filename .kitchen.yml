@@ -1,4 +1,7 @@
 ---
+driver:
+  flavor_ref: 'm1.medium'
+
 provisioner:
   name: chef_solo
   encrypted_data_bag_secret_key_path: test/integration/encrypted_data_bag_secret
@@ -16,5 +19,3 @@ suites:
       - recipe[timesync::default]
       - recipe[haproxy::default]
 
-driver:
-  flavor_ref: 'm1.medium'
