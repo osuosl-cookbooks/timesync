@@ -57,9 +57,3 @@ pm2_application 'timesync' do
   action :start_or_graceful_reload
 end
 
-directory '/opt/timesync/source' do
-  owner 'timesync'
-  group 'timesync'
-  mode '0755'
-  recursive true
-end
