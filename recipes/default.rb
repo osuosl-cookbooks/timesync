@@ -16,10 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-pg = Chef::EncryptedDataBagItem.load(node['timesync']['databag'],
-                                     'pg')
-secret_key = Chef::EncryptedDataBagItem.load(node['timesync']['databag'],
-				     'key')
+pg = Chef::EncryptedDataBagItem.load(node['timesync']['databag'], 'pg')
+secret_key = Chef::EncryptedDataBagItem.load(node['timesync']['databag'], 'key')
 
 environment = {
   'PG_CONNECTION_STRING' => "postgres://#{pg['user']}:#{pg['pass']}@" \
@@ -47,7 +45,15 @@ bash 'run timesync migrations' do
   cwd "#{node['timesync']['application_path']}/source"
 end
 
+execute 'create root user' do
+  command "npm run create-account -- -u root -p #{secret_key['root_pass']}"
+  environment environment
+  sensitive true
+  cwd "#{node['timesync']['application_path']}/source"
+end
+
 pm2_application 'timesync' do
   user node['timesync']['user']
   action :start_or_graceful_reload
 end
+

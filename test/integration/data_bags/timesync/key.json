@@ -1,9 +1,16 @@
 {
   "id": "key",
   "key": {
-    "encrypted_data": "LVd/qOEKsnBvY/fsSQLWem69/XF8Y2rSkUWCM/AAqhE+FLb1OCmLC0CueAMq\ngPQtJOMqGAWzVs1MYS6rYTsySiOn5y+aqlVc4OernvnIUN9P1YbZp/9Nh2qp\n5SSNcflNUMPFi50j6cf007SY71nalQ==\n",
-    "hmac": "jRovQnokONhW4rRqBtrQiI3Ik8XTX+vy7vP+lW345Yk=\n",
-    "iv": "nhq8hpmNU5zLABvjp17nxA==\n",
+    "encrypted_data": "MYkKFWn5AHjkusZe8b/kHs755kXnpHKH2fjy/w3R6SFP9s07FlU3G7toXJ4D\n7M4irnAEz9eH7dMzmKreBgWn0LEz4fyz12UCXHW/nNL/Y9cf27tzL4RJlEaZ\npK9t7PIb0vUS14uSDTnlxefi6JsfPg==\n",
+    "hmac": "xYq5pDjnR+wicb6hZ5Tuv04WZ/tStjliAN1Pgl0kiig=\n",
+    "iv": "9DntMAt+hiabO7hP5C8NKw==\n",
+    "version": 2,
+    "cipher": "aes-256-cbc"
+  },
+  "root_pass": {
+    "encrypted_data": "WCHRxWwgplbXTZYSEiQCRzH/C2Hdhw0/zq+fv514lhQw5J9FTFjisl1TgXx3\nvO5xLjHgdyJNP1ErFGIur72ihW4OwXzUECMQCkMo1HlGZ5zHlwMpWetiZgLg\n0eHc6Ph08KMr8J18+KKb1u98PHZ4sg==\n",
+    "hmac": "qdRnBhzcWra25uJFCVyEzu4mTccimHPwhFMc1jViF4Y=\n",
+    "iv": "kPxFhzvxovi1S31DnquU7A==\n",
     "version": 2,
     "cipher": "aes-256-cbc"
   }
