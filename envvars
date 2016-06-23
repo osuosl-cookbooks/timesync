@@ -1,0 +1,4 @@
+cookbook=timesync
+version=0.2.0
+envs=~
+pr_link=https://github.com/osuosl-cookbooks/timesync/pull/9
