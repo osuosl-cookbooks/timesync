@@ -10,6 +10,8 @@ default['timesync']['group'] = 'timesync'
 default['timesync']['databag'] = 'timesync'
 default['timesync']['instance_name'] = 'timesync'
 
+default['timesync']['pg_info'] = 'pg'
+
 override['haproxy']['members'] = [
   {
     'hostname' => 'localhost',
