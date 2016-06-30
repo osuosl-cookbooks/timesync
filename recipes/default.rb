@@ -16,7 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-pg = Chef::EncryptedDataBagItem.load(node['timesync']['databag'], 'pg')
+pg = Chef::EncryptedDataBagItem.load(
+  node['timesync']['databag'],
+  node['timesync']['pg_info']
+)
+
 secret_key = Chef::EncryptedDataBagItem.load(node['timesync']['databag'], 'key')
 
 environment = {
@@ -56,4 +60,3 @@ pm2_application 'timesync' do
   user node['timesync']['user']
   action :start_or_graceful_reload
 end
-
