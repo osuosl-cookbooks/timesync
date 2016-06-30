@@ -3,6 +3,10 @@ timesync CHANGELOG
 This file is used to list changes made in each version of the
 timesync cookbook.
 
+0.2.2 (2016-06-30)
+------------------
+- Move pg data bag definition to an attribute
+
 0.2.1 (2016-06-23)
 ------------------
 - Moved create databse recipe to test cookbook
