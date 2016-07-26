@@ -12,6 +12,9 @@ default['timesync']['instance_name'] = 'timesync'
 
 default['timesync']['pg_info'] = 'pg'
 
+default['timesync']['ldap_url'] = 'ldaps://ldap.osuosl.org/'
+default['timesync']['ldap_search'] = 'ou=People,dc=osuosl,dc=org'
+
 override['haproxy']['members'] = [
   {
     'hostname' => 'localhost',
