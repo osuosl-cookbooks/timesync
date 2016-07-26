@@ -34,3 +34,10 @@ describe 'create user and group' do
     it { should exist }
   end
 end
+
+describe file('/etc/pm2/conf.d/timesync.json') do
+  it { should contain('"TIMESYNC_AUTH_MODULES": "[\"password\",\"ldap\"]"') }
+  it { should contain('"TIMESYNC_LDAP_URL": "ldaps://ldap.osuosl.org/"') }
+  it { should contain('"TIMESYNC_LDAP_SEARCH_BASE": "ou=People,dc=osuosl,dc=org"') }
+end
+
