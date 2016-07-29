@@ -28,7 +28,10 @@ environment = {
     "#{pg['host']}:#{pg['port']}/#{pg['database_name']}",
   'NODE_ENV' => 'production_pg',
   'SECRET_KEY' => secret_key['key'],
-  'INSTANCE_NAME' => node['timesync']['instance_name']
+  'INSTANCE_NAME' => node['timesync']['instance_name'],
+  'TIMESYNC_AUTH_MODULES' => '["password", "ldap"]',
+  'TIMESYNC_LDAP_URL' => node['timesync']['ldap_url'],
+  'TIMESYNC_LDAP_SEARCH_BASE' => node['timesync']['ldap_search']
 }
 
 nodejs_webapp 'timesync' do
