@@ -3,6 +3,10 @@ timesync CHANGELOG
 This file is used to list changes made in each version of the
 timesync cookbook.
 
+0.3.0 (2016-07-29)
+------------------
+- Allow TimeSync to use OSL LDAP accounts.
+
 0.2.2 (2016-06-30)
 ------------------
 - Move pg data bag definition to an attribute
