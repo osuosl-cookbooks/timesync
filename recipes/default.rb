@@ -62,4 +62,4 @@ end
 pm2_application 'timesync' do
   user node['timesync']['user']
   action :start
-  end
+end
