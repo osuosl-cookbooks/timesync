@@ -61,5 +61,5 @@ end
 
 pm2_application 'timesync' do
   user node['timesync']['user']
-  action :start_or_graceful_reload
-end
+  action :start
+  end
