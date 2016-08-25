@@ -3,6 +3,10 @@ timesync CHANGELOG
 This file is used to list changes made in each version of the
 timesync cookbook.
 
+0.3.1 (2016-08-25)
+------------------
+- Don't restart the application every time chef is run.
+
 0.3.0 (2016-07-29)
 ------------------
 - Allow TimeSync to use OSL LDAP accounts.
